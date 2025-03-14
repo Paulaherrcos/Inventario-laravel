@@ -12,6 +12,9 @@
                     {{ __("You're logged in!") }}
                 </div>
             </div>
+            <div class="mt-6">
+                @include('productos.index')
+            </div>
         </div>
     </div>
 </x-app-layout>

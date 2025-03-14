@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Categoria extends Model
 {
+    protected $table='categorias';
     protected $fillable = [
         'nombre',
     ];
@@ -15,3 +16,7 @@ class Categoria extends Model
         return $this->hasMany(Producto::class);
    }
 }
+
+
+// INSERT INTO categorias (nombre) 
+// VALUES ('Electrónica');

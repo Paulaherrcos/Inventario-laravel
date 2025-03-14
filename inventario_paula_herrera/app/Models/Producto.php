@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Producto extends Model
 {
+     protected $table='productos';
      protected $fillable = [
         'nombre',
         'descripcion',
@@ -24,4 +25,12 @@ class Producto extends Model
    {
        return $this->belongsTo(Proveedor::class);
   }
+
+  public function usuario()
+   {
+       return $this->belongsTo(User::class);
+  }
 }
+
+// INSERT INTO proveedores (nombre, correo_contacto, telefono)
+// VALUES ('Proveedor XYZ', 'contacto@proveedorxyz.com', '1234567890');

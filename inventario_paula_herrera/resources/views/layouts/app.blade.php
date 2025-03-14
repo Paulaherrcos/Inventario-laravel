@@ -29,7 +29,8 @@
 
             <!-- Page Content -->
             <main>
-                {{ $slot }}
+                <!-- lo que va a salir al entrar logueados -->
+                @yield('content')
             </main>
         </div>
     </body>

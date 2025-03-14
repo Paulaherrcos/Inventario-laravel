@@ -22,13 +22,13 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
+Route::get('productos', [ProductoController::class, 'index'])->name('productos.index');
+Route::get('productos/create', [ProductoController::class, 'create'])->name('productos.create');
+Route::post('productos', [ProductoController::class, 'store'])->name('productos.store');  // Usamos 'store' para guardar el producto
+Route::get('productos/{id}', [ProductoController::class, 'show']);
+Route::put('productos/{id}', [ProductoController::class, 'update']);
+Route::delete('productos/{id}', [ProductoController::class, 'destroy']);
 
-Route::get('productos',[ProductoController::class, 'index']);
-Route::post('productos',[ProductoController::class, 'create']);
-Route::get('productos/{id}',[ProductoController::class, 'show']);
-Route::put('productos/{id}',[ProductoController::class, 'update']);
-Route::put('productos/{id}',[ProductoController::class, 'edit']);
-Route::delete('productos/{id}',[ProductoController::class, 'destroy']);
 
 Route::resource('categorias',CategoriaController::class);
 Route::put('categorias/{id}',[CategoriaController::class, 'show']);
@@ -36,7 +36,7 @@ Route::put('categorias/{id}',[CategoriaController::class, 'edit']);
 Route::put('categorias/{id}',[CategoriaController::class, 'update']);
 
 
-Route::get('proveedores',[ProveedorController::class, 'index']);
+Route::get('proveedores',[ProveedorController::class, 'index'])->name('proveedores.index');
 Route::post('proveedores',[ProveedorController::class, 'create']);
 Route::get('proveedores/{id}',[ProveedorController::class, 'show']);
 Route::put('proveedores/{id}',[ProveedorController::class, 'update']);

@@ -1,8 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\User;
+use App\Models\Producto;
+use App\Models\Categoria;
+use App\Models\Proveedor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductoController extends Controller
 {
@@ -11,7 +15,11 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        //
+        $usuario=Auth::user();
+        $productos=Producto::all();
+        return view('productos.index', compact('productos'));
+
+
     }
 
     /**
@@ -19,7 +27,11 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        //
+        $usuario=Auth::user();
+        $categorias=Categoria::all();
+        $proveedores=Proveedor::all();
+
+        return view('productos.create', compact('categorias', 'proveedores'));
     }
 
     /**
@@ -27,7 +39,26 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validar=$request->validate([
+            'nombre'=>'string|max:255|required',
+            'descripcion'=>'string|max:255',
+            'precio'=>'numeric|required',
+            'cantidad'=>'numeric|required',
+            'categoria_id'=>'integer|required',
+            'proveedor_id'=>'integer|required',
+        ]);
+
+        $producto= new Producto();
+        $producto->nombre=$validar['nombre'];
+        $producto->descripcion=$validar['descripcion'];
+        $producto->precio=$validar['precio'];
+        $producto->cantidad=$validar['cantidad'];
+        $producto->categoria_id=$validar['categoria_id'];
+        $producto->proveedor_id=$validar['proveedor_id'];
+
+        $producto->save();
+
+        return redirect()->route('productos.index')->with('success','Producto agregado con éxito');
     }
 
     /**
