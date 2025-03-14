@@ -27,7 +27,7 @@ Route::get('productos/create', [ProductoController::class, 'create'])->name('pro
 Route::post('productos', [ProductoController::class, 'store'])->name('productos.store');  // Usamos 'store' para guardar el producto
 Route::get('productos/{id}', [ProductoController::class, 'show']);
 Route::put('productos/{id}', [ProductoController::class, 'update']);
-Route::delete('productos/{id}', [ProductoController::class, 'destroy']);
+Route::delete('productos/{id}', [ProductoController::class, 'destroy'])->name('productos.destroy');
 
 
 Route::resource('categorias',CategoriaController::class);

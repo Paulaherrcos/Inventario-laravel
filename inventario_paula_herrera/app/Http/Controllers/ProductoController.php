@@ -90,6 +90,12 @@ class ProductoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $producto=Producto::find($id);
+        if($producto){
+            $producto->delete();
+        return redirect()->route('productos.index')->with('success','Producto eliminado.');
+        }else{
+            return redirect()->route('productos.index')->with('error','No se ha podido eliminar ningun producto.');
+        }
     }
 }
