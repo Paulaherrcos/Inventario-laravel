@@ -25,7 +25,7 @@ require __DIR__.'/auth.php';
 Route::get('productos', [ProductoController::class, 'index'])->name('productos.index');
 Route::get('productos/create', [ProductoController::class, 'create'])->name('productos.create');
 Route::post('productos', [ProductoController::class, 'store'])->name('productos.store');  // Usamos 'store' para guardar el producto
-Route::get('productos/{id}', [ProductoController::class, 'show']);
+Route::get('productos/{id}', [ProductoController::class, 'show'])->name('productos.show');
 Route::put('productos/{id}', [ProductoController::class, 'update'])->name('productos.update');
 Route::get('productos/edit/{id}', [ProductoController::class, 'edit'])->name('productos.edit');
 Route::delete('productos/{id}', [ProductoController::class, 'destroy'])->name('productos.destroy');

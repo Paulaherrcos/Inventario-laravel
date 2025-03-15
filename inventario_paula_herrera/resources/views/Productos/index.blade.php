@@ -62,6 +62,11 @@
             <label for="" name="proveedor_id">{{ $producto->proveedor_id }}</label>
         </div> 
         <br>
+        <a href="{{ route('productos.show', $producto->id) }}">
+            <button type="button">Ver</button>
+        </a>
+        <br>
+        <br>
         <form action="{{route('productos.edit', $producto->id)}}" method="GET">
             @csrf
             <button type="submit">Actualizar</button>
