@@ -44,7 +44,8 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
-
-        return redirect(route('dashboard', absolute: false));
+        // ponemos aqui una vez authenticada la sesión para que redirija al productos
+        return redirect('/productos');
+        // return redirect(route('dashboard', absolute: false));
     }
 }
