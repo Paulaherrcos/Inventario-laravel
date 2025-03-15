@@ -26,7 +26,8 @@ Route::get('productos', [ProductoController::class, 'index'])->name('productos.i
 Route::get('productos/create', [ProductoController::class, 'create'])->name('productos.create');
 Route::post('productos', [ProductoController::class, 'store'])->name('productos.store');  // Usamos 'store' para guardar el producto
 Route::get('productos/{id}', [ProductoController::class, 'show']);
-Route::put('productos/{id}', [ProductoController::class, 'update']);
+Route::put('productos/{id}', [ProductoController::class, 'update'])->name('productos.update');
+Route::get('productos/edit/{id}', [ProductoController::class, 'edit'])->name('productos.edit');
 Route::delete('productos/{id}', [ProductoController::class, 'destroy'])->name('productos.destroy');
 
 
@@ -37,8 +38,6 @@ Route::put('categorias/{id}',[CategoriaController::class, 'update']);
 
 
 Route::get('proveedores',[ProveedorController::class, 'index'])->name('proveedores.index');
-Route::post('proveedores',[ProveedorController::class, 'create']);
+Route::get('proveedores/create',[ProveedorController::class, 'create'])->name('proveedores.create');
+Route::post('proveedores', [ProveedorController::class, 'store'])->name('proveedores.store'); 
 Route::get('proveedores/{id}',[ProveedorController::class, 'show']);
-Route::put('proveedores/{id}',[ProveedorController::class, 'update']);
-Route::put('proveedores/{id}',[ProveedorController::class, 'edit']);
-Route::delete('proveedores/{id}',[ProveedorController::class, 'destroy']);

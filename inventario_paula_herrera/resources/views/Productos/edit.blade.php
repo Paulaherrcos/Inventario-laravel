@@ -36,32 +36,40 @@
         <a href="{{route('categorias.index')}}"><button>Listado categorías</button></a>
         <a href="{{route('productos.index')}}"><button>Listado productos</button></a>
     </nav>
-<form action="{{route('productos.store')}}" method="POST">
-    @csrf
-        <h1>EDITA TU PRODUCTO</h1>
-        <input type="text" name="nombre" required placeholder="Nombre" value="{}">
-        <br>
-        <input type="text" name="descripcion" placeholder="descripcion">
-        <br>
-        <input type="number" name="precio" placeholder="precio">
-        <br>
-        <input type="number" name="cantidad" required placeholder="cantidad">
-        <br>
-        @foreach($categorias as $categoria)
-        <select name="categoria_id" id="categoria_id">
-            <option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
-        </select>
-        @endforeach
-        <br>
-        @foreach($proveedores as $proveedor)
-        <select name="proveedor_id" id="proveedor_id">
-            <option value="{{$proveedor->id}}">{{$proveedor->nombre}}</option>
-        </select>
-        @endforeach
-        <br>
-        <button type="submit">Agregar producto</button>
+    <form action="{{route('productos.update', $producto->id)}}" method="POST">
+        @csrf
+        @method('PUT')
+            <h1>EDITA TU PRODUCTO</h1>
+            <input type="text" name="nombre" required placeholder="Nombre" value="{{$producto->nombre}}">
+            <br>
+            <input type="text" name="descripcion" placeholder="descripcion" value="{{$producto->descripcion}}">
+            <br>
+            <input type="number" name="precio" placeholder="precio" value="{{$producto->precio}}">
+            <br>
+            <input type="number" name="cantidad" required placeholder="cantidad" value="{{$producto->cantidad}}">
+            <br>
+                <select name="categoria_id" id="categoria_id">
+            @foreach($categorias as $categoria)
+                <option value="{{ $categoria->id }}" 
+                    @if($producto->categoria_id == $categoria->id) selected @endif>
+                    {{ $categoria->nombre }}
+                </option>
+            @endforeach
+                </select>
+                <br>
 
-</form>
+                <!-- Proveedores -->
+                <select name="proveedor_id" id="proveedor_id">
+                    @foreach($proveedores as $proveedor)
+                        <option value="{{ $proveedor->id }}" 
+                            @if($producto->proveedor_id == $proveedor->id) selected @endif>
+                            {{ $proveedor->nombre }}
+                        </option>
+                    @endforeach
+                </select>
+            <br>
+            <button type="submit">Actualizar producto</button>
+        </form>
 
 
 @endsection

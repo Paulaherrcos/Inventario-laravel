@@ -5,8 +5,8 @@
 @section('content')
 <style>
     .center{
+        width:35%;
         margin:auto;
-        width:40%;
         text-align:center
     }
     h1{
@@ -16,9 +16,8 @@
     .productos{
         border:1px solid black;
         width: auto;
-        border-radius:5%;
         padding:3%;
-        margin-top:20px
+        margin:10px;
     }
 
     button{
@@ -35,14 +34,18 @@
     <a href="{{route('productos.create')}}"><button>Nuevo producto</button></a>
     <a href="{{route('proveedores.index')}}"><button>Listado proveedores</button></a>
     <a href="{{route('productos.index')}}"><button>Listado productos</button></a>
+    <br>
+    <br>
+    <button><a href="{{route('categorias.create')}}">Nueva categoría</a></button>
+    <br>
     @foreach($categorias as $categoria)
     <div class="productos">
         <div>
-            <label for="">Nombre:</label>
+            <label for="">->Nombre:</label>
             <label for="" name="nombre">{{ $categoria->nombre }}</label>
         </div>
+    </div>
     @endforeach
-</div>
 
 @endsection
 

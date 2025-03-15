@@ -74,16 +74,47 @@ class ProductoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $producto=Producto::find($id);
+        $categorias=Categoria::all();
+        $proveedores=Proveedor::all();
+        return view('productos.edit', compact('producto','categorias', 'proveedores'));
     }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {
-        //
-    }
+    {    
+        $producto=Producto::find($id);
+
+        if($producto){
+
+            $validar=$request->validate([
+                'nombre'=>'string|max:255|required',
+                'descripcion'=>'string|max:255',
+                'precio'=>'numeric|required',
+                'cantidad'=>'numeric|required',
+                'categoria_id'=>'integer|required',
+                'proveedor_id'=>'integer|required',
+            ]);
+        
+            
+        
+            $producto->nombre=$validar['nombre'];
+            $producto->descripcion=$validar['descripcion'];
+            $producto->precio=$validar['precio'];
+            $producto->cantidad=$validar['cantidad'];
+            $producto->categoria_id=$validar['categoria_id'];
+            $producto->proveedor_id=$validar['proveedor_id'];
+        
+            $producto->save();
+        
+            return redirect()->route('productos.index')->with('success','Producto agregado con éxito');
+        }else{
+            return redirect()->route('productos.index')->with('error','No existe producto con este id');
+        }
+
+}
 
     /**
      * Remove the specified resource from storage.

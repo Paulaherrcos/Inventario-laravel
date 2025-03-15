@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'PaginaIndex productos')
+@section('title', 'PaginaIndex Proveedores')
 
 @section('content')
 <style>
@@ -36,30 +36,18 @@
         <a href="{{route('categorias.index')}}"><button>Listado categorías</button></a>
         <a href="{{route('productos.index')}}"><button>Listado productos</button></a>
     </nav>
-<form action="{{route('productos.store')}}" method="POST">
+<form action="{{route('proveedores.store')}}" method="POST">
     @csrf
-        <h1>RELLENA TU PRODUCTO</h1>
+        <h1>RELLENA TU PROVEEDOR</h1>
         <input type="text" name="nombre" required placeholder="Nombre">
         <br>
-        <input type="text" name="descripcion" placeholder="descripcion">
+        <input type="correo" name="correo_contacto" placeholder="correo">
         <br>
         <input type="number" name="precio" placeholder="precio">
         <br>
-        <input type="number" name="cantidad" required placeholder="cantidad">
+        <input type="number" name="telefono" required placeholder="telefono">
         <br>
-        <select name="categoria_id" id="categoria_id">
-        @foreach($categorias as $categoria)
-            <option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
-        @endforeach
-        </select>
-        <br>
-        <select name="proveedor_id" id="proveedor_id">  
-        @foreach($proveedores as $proveedor)
-            <option value="{{$proveedor->id}}">{{$proveedor->nombre}}</option>
-        @endforeach
-        </select>
-        <br>
-        <button type="submit">Agregar producto</button>
+        <button type="submit">Agregar proveedor</button>
 
 </form>
 

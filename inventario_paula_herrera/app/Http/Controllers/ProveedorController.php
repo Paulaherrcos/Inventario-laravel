@@ -21,7 +21,7 @@ class ProveedorController extends Controller
      */
     public function create()
     {
-        //
+        return view('proveedores.create');
     }
 
     /**
@@ -29,7 +29,20 @@ class ProveedorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validar=$request->validate([
+            'nombre'=>'string|max:255|required',
+            'correo_contacto'=>'string|max:255',
+            'telefono'=>'numeric|required',
+        ]);
+
+        $proveedor= new Proveedor();
+        $proveedor->nombre=$validar['nombre'];
+        $proveedor->correo_contacto=$validar['correo_contacto'];
+        $proveedor->telefono=$validar['telefono'];
+
+        $proveedor->save();
+
+        return redirect()->route('proveedores.index')->with('success','Producto agregado con éxito');
     }
 
     /**

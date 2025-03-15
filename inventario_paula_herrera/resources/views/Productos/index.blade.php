@@ -61,7 +61,12 @@
             <label for="">Proveedor:</label>
             <label for="" name="proveedor_id">{{ $producto->proveedor_id }}</label>
         </div> 
-        <button><a href="">Actualizar</a></button>
+        <br>
+        <form action="{{route('productos.edit', $producto->id)}}" method="GET">
+            @csrf
+            <button type="submit">Actualizar</button>
+        </form>
+        <br>
         <form action="{{route('productos.destroy', $producto->id)}}" method="POST">
             @csrf
             @method('DELETE')

@@ -28,7 +28,10 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        // ponemos aqui una vez authenticada la sesión para que redirija al productos
+        return redirect('/productos');
+
+        // return redirect()->intended(route('dashboard', absolute: false));
     }
 
     /**

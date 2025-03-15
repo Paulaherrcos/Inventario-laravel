@@ -6,7 +6,7 @@
 <style>
     .center{
         margin:auto;
-        width:40%;
+        width:35%;
         text-align:center
     }
     h1{
@@ -35,6 +35,10 @@
     <a href="{{route('productos.create')}}"><button>Nuevo producto</button></a>
     <a href="{{route('categorias.index')}}"><button>Listado categorías</button></a>
     <a href="{{route('productos.index')}}"><button>Listado productos</button></a>
+    <br>
+    <br>
+    <button><a href="{{route('proveedores.create')}}">Nuevo proovedor</a></button>
+    <br>
     @foreach($proveedores as $proovedor)
     <div class="productos">
         <div>
@@ -49,8 +53,9 @@
             <label for="">Teléfono:</label>
             <label for="" name="telefono">{{ $proovedor->telefono }}</label>
         </div>
-    @endforeach
+        
 </div>
+    @endforeach
 
 @endsection
 
